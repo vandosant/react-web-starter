@@ -7,6 +7,9 @@ export class Todo extends Component {
       todos: [],
       newTodo: ''
     }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   handleClick(e) {
@@ -26,11 +29,11 @@ export class Todo extends Component {
       <div>
         <form>
 	  <input ref={node => this.input = node} type="text" placeholder="new todo"/>
-	  <button onClick={this.handleClick.bind(this)}>create</button>
+	  <button onClick={this.handleClick}>create</button>
         </form>
 	<ul>
           {this.state.todos.map((todo, i) => {
-	    return (<li key={i} onClick={() => this.removeTodo.call(this, i)}>{todo}</li>)}
+	    return (<li key={i} onClick={() => this.removeTodo(i)}>{todo}</li>)}
 	    )}
 	</ul>
       </div>
