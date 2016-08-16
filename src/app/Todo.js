@@ -16,6 +16,11 @@ export class Todo extends Component {
     this.setState({todos});
   }
 
+  removeTodo(i) {
+    const todos = [...this.state.todos.slice(0, i), ...this.state.todos.slice(i + 1)];
+    this.setState({todos});
+  }
+
   render() {
     return (
       <div>
@@ -24,7 +29,9 @@ export class Todo extends Component {
 	  <button onClick={this.handleClick.bind(this)}>create</button>
         </form>
 	<ul>
-          {this.state.todos.map(todo => <li>{todo}</li>)}
+          {this.state.todos.map((todo, i) => {
+	    return (<li key={i} onClick={() => this.removeTodo.call(this, i)}>{todo}</li>)}
+	    )}
 	</ul>
       </div>
     );
